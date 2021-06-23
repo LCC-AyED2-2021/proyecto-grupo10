@@ -240,9 +240,9 @@ def printD(D):
             print("Slot",i,': ',end='')
             while currentNode!=None:
                 if currentNode.nextNode!=None:
-                        print("[k:",currentNode.key,";v:",currentNode.value,"] ➝ ",end="")
+                        print(";v:",currentNode.value,"] ➝ ",end="")
                 else:
-                    print("[k:",currentNode.key,";v:",currentNode.value,"] ➝ ",currentNode.nextNode,"\n") 
+                    print(";v:",currentNode.value,"] ➝ ",currentNode.nextNode,"\n") 
                 currentNode = currentNode.nextNode
         else:
             print("Slot",i,": ",currentNode,"\n")

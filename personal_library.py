@@ -6,10 +6,12 @@ from utilities import *
 import os
 
 print("Bienvenido a la Personal Library de TobyLucas")
-path = os.chdir('C:\Lucas\Prueba Algoritmos')
+#path = os.chdir('C:\Lucas\Prueba Algoritmos')
+path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
 
-insertWordsHash(path)
-
+firstD = insertWordsHash(path)
+#print(totalWords)
+#Función que desde el primer hash, crea un segundo hash con cada palabra apuntando a un archivo con la cantidad de veces que se encuentra dicha palabra en el archivo
 def invertStructure(S):
     slotsQ = 0
 
@@ -36,3 +38,4 @@ def invertStructure(S):
             currentNode = currentNode.nextNode
 
     return inverted
+
