@@ -21,6 +21,7 @@ class dictionaryNode:
   value = None
   key = None
   nextNode = None
+  repetitions = 1
 
 slotsSize = 9
 
