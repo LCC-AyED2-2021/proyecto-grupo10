@@ -11,40 +11,31 @@ def check_file_count(path):
     print("La cantidad de archivos en la carpeta es " + str(file_count))
 
     return file_count
-
-def get_files(pathDirectory):
-    files = os.listdir(pathDirectory)
-    return files
+    
 
 
-def line_to_line(pathFiles):
-    f = open(pathFiles, encoding="utf8")
-    lines = f.readlines()
-
-    for line in lines:
-        convertLineToWords(line)
-
-
-def printWordsInEveryFile(path):
-    print("Imprimiendo palabras")
-    files = get_files(path)
+def insertWordsHash(path):
+    files = os.listdir(path)
     for file in files:
-        line_to_line(file)
+        f = open(file, encoding="utf8")
+        lines = f.readlines()
+        for line in lines:
+            word = ''
+            lentghL = len(line)
+            for i in range(0,lentghL):
+                 if line[i] != '.' and line[i] != ',' and line[i] != ' ':
+                    word = word + line[i]
+                 elif i<lentghL:
+                    if (line[i] == '.' and line[i+1] != ' ') or (line[i] == ',' and line[i+1] != ' '):
+                        word = word + line[i]
+                    if line[i] == ' ':
+                        print(word)
+                        word = ''
+            
+        
 
 
-def convertLineToWords(Line):
-    word = ''
-    lentghL = len(Line)
-    for i in range(0,lentghL):
-        if Line[i] != '.' and Line[i] != ',' and Line[i] != ' ':
-            word = word + Line[i]
-        elif i<lentghL:
-             if (Line[i] == '.' and Line[i+1] != ' ') or (Line[i] == ',' and Line[i+1] != ' '):
-                 word = word + Line[i]
-             if Line[i] == ' ':
-                 ##insertamos la palabra
-                 print(word)
-                 word = ''
+    
 
 
             
