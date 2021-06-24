@@ -13,6 +13,16 @@ def check_file_count(path):
 
     return file_count
 
+def insertOnStructure(D, slot, word):
+    if word != '':
+        if D[slot] == None:
+            L = LinkedList()
+            add(L, word)
+            D[slot] = L
+        else:
+            add(D[slot], word)
+
+
 def insertWordsHash(path):
     files = os.listdir(path)
     
@@ -29,27 +39,26 @@ def insertWordsHash(path):
         for line in lines:
             word = ''
             lentghL = len(line)
-
             for i in range(0,lentghL):
-
-                 if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"':
+                
+                if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"':
                     word = word + line[i]
-                 elif i<lentghL:
-                    if (line[i] == '.' and line[i+1] != ' ') or (line[i] == ',' and line[i+1] != ' '):
+
+                    if i == lentghL - 2:
+                        print("pepito", word[len(word) - 1])
+                        insertOnStructure(firstDictionary, j, word)
+
+                else:
+                    
+                    if i < lentghL - 2 and ((line[i] == '.' and line[i+1] != ' ') or (line[i] == ',' and line[i+1] != ' ')):
                         word = word + line[i]
-                    if line[i] == ' ':
 
-                        if firstDictionary[j] == None:
-                            L = LinkedList()
-                            add(L, word)
-                            firstDictionary[j] = L
-                        else:
-                            add(firstDictionary[j], word)
+                    insertOnStructure(firstDictionary, j, word)
 
-                        totalWords = totalWords + 1
-                        word = ''
-
-        add(firstDictionary[j], file)
+                    totalWords = totalWords + 1
+                    word = ''
+                
+        insertOnStructure(firstDictionary, j, file)
         j = j + 1
     
     print("succesful!")

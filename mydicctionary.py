@@ -33,7 +33,7 @@ def hash(key):
   slot = 0
   for i in range(0, len(key)):
     slot = slot + ord(key[i]) - ord("a")
-  return slot
+  return slot%6
 
 
 #insert(D,key, value)
@@ -242,7 +242,7 @@ def printD(D):
             print("Slot",i,': ',end='')
             while currentNode!=None:
                 if currentNode.nextNode!=None:
-                        print(";v:",currentNode.value,"] ➝ ",end="")
+                        print("[;r", currentNode.repetitions,"] [;v:",currentNode.value,"] ➝ ",end="")
                 else:
                     print(";v:",currentNode.value,"] ➝ ",currentNode.nextNode,"\n") 
                 currentNode = currentNode.nextNode

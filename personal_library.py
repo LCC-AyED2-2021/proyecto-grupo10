@@ -6,8 +6,8 @@ from utilities import *
 import os
 
 print("Bienvenido a la Personal Library de TobyLucas")
-path = os.chdir('C:\Lucas\Prueba Algoritmos')
-#path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
+#path = os.chdir('C:\Lucas\Prueba Algoritmos')
+path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
 
 firstD = insertWordsHash(path)
 
@@ -29,7 +29,7 @@ def invertStructure(S):
 
         while currentNode != None:
             slot = hash(currentNode.value)
-
+            print(slot)
             if inverted[slot] == None: #si el slot está vacío, agregamos la palabra y el nombre del archivo (este ultimo en la cabecera)
                 L = dictionary()
                 addToDictionary(L, currentNode.value, slot)
@@ -44,5 +44,6 @@ def invertStructure(S):
     return inverted
 
 inverted = invertStructure(firstD)
-printD(firstD)
-#printD(inverted)
+
+print("NEXT")
+printD(inverted)
