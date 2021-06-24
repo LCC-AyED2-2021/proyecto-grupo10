@@ -32,7 +32,7 @@ def insertWordsHash(path):
 
             for i in range(0,lentghL):
 
-                 if line[i] != '.' and line[i] != ',' and line[i] != ' ':
+                 if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"':
                     word = word + line[i]
                  elif i<lentghL:
                     if (line[i] == '.' and line[i+1] != ' ') or (line[i] == ',' and line[i+1] != ' '):

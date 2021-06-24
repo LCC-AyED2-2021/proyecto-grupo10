@@ -6,8 +6,8 @@ from utilities import *
 import os
 
 print("Bienvenido a la Personal Library de TobyLucas")
-#path = os.chdir('C:\Lucas\Prueba Algoritmos')
-path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
+path = os.chdir('C:\Lucas\Prueba Algoritmos')
+#path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
 
 firstD = insertWordsHash(path)
 
@@ -44,4 +44,5 @@ def invertStructure(S):
     return inverted
 
 inverted = invertStructure(firstD)
-printD(inverted)
+printD(firstD)
+#printD(inverted)
