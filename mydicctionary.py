@@ -30,8 +30,10 @@ slotsSize = 9
 
 ##FUNCION HASH
 def hash(key):
- return key%slotsSize
-
+  slot = 0
+  for i in range(0, len(key)):
+    slot = slot + ord(key[i]) - ord("a")
+  return slot
 
 
 #insert(D,key, value)
