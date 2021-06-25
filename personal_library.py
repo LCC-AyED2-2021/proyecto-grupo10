@@ -9,19 +9,24 @@ print("Bienvenido a la Personal Library de TobyLucas")
 #path = os.chdir('C:\Lucas\Prueba Algoritmos')
 path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
 
-firstD = insertWordsHash(path)
+result = insertWordsHash(path)
+firstD = result[0]
 
-#print(totalWords)
+totalWords = result[1]
+print("tw", totalWords)
+
+##FUNCION HASH
+def hash(key):
+  slot = 0
+  for i in range(0, len(key)):
+    slot = slot + ord(key[i]) - ord("a")
+  return slot % totalWords
+
 #Función que desde el primer hash, crea un segundo hash con cada palabra apuntando a un archivo con la cantidad de veces que se encuentra dicha palabra en el archivo
 def invertStructure(S):
     slotsQ = 0
 
-    #contamos las palabras de cada lista de la estructura y las sumamos para crear otra estructura
-    #ESTO PODRÍAMOS ELIMINARLO EN EL CASO DE PODER CONTAR LAS PALABRAS MIENTRAS INSERTAMOS ANTES DE LLAMAR A LA FUNCIÓN
-    for i in range(0, len(S)):
-        slotsQ = slotsQ + (length(S[i])-1)
-
-    inverted = Array(slotsQ, dictionary())
+    inverted = Array(totalWords, dictionary())
 
     for i in range(0, len(S)):
 
@@ -29,7 +34,7 @@ def invertStructure(S):
 
         while currentNode != None:
             slot = hash(currentNode.value)
-            print(slot)
+
             if inverted[slot] == None: #si el slot está vacío, agregamos la palabra y el nombre del archivo (este ultimo en la cabecera)
                 L = dictionary()
                 addToDictionary(L, currentNode.value, slot)
@@ -43,7 +48,24 @@ def invertStructure(S):
     print("succesful!")
     return inverted
 
-inverted = invertStructure(firstD)
+def searchNEW(inverted, word):
 
+    slot = hash(word)
+    print("SLOT ", slot)
+
+    if inverted[slot] != None:
+        List = inverted[slot]
+        imprimirlista(List)
+        delete(List, word)
+
+        newList = MergeSort(List)
+
+        return newList
+
+    return None
+
+inverted = invertStructure(firstD)
+newList = searchNEW(inverted, "for")
 print("NEXT")
-printD(inverted)
+imprimirlista(newList)
+#printD(inverted)

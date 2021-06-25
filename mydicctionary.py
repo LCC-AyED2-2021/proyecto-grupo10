@@ -26,16 +26,6 @@ class dictionaryNode:
 slotsSize = 9
 
 
-
-
-##FUNCION HASH
-def hash(key):
-  slot = 0
-  for i in range(0, len(key)):
-    slot = slot + ord(key[i]) - ord("a")
-  return slot%6
-
-
 #insert(D,key, value)
 #Descripción: Inserta un key en una posición determinada por la función de hash similar a (1)  en el diccionario (dictionary). Resolver colisiones por encadenamiento. En caso de existir un hash(Key) duplicado, el key se anexa a la lista.
 #Entrada: el diccionario sobre el cual se quiere realizar la inserción  y el valor del key a insertar 
