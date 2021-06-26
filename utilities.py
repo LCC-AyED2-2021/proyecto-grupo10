@@ -47,6 +47,7 @@ def insertWordsHash(path):
 
                     if i == lentghL - 2:
                         insertOnStructure(firstDictionary, j, word)
+                        totalWords = totalWords + 1
 
                 else:
                     

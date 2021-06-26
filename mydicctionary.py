@@ -223,6 +223,22 @@ def checkSubSet(s, p):
 #Imprime un diccionario con colisiones encadenadas
 #El formato de los nodos es [k: key ;v: value]
 #Creditos a Gabriel Gonzalez Sanchez que la paso por slack y me sirvio un monton :)
+def printD2(D):
+    n = len(D)
+    for i in range(0,n):
+        currentNode = D[i]
+        if currentNode!=None:
+            currentNode = D[i].head
+            print("Slot",i,': ',end='')
+            while currentNode!=None:
+                if currentNode.nextNode!=None:
+                        print("[;v:",currentNode.value,"] ➝ ",end="")
+                else:
+                    print(";v:",currentNode.value,"] ➝ ",currentNode.nextNode,"\n") 
+                currentNode = currentNode.nextNode
+        else:
+            print("Slot",i,": ",currentNode,"\n")
+
 def printD(D):
     n = len(D)
     for i in range(0,n):

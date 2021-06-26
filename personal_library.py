@@ -9,13 +9,14 @@ import os
 import sys
 
 print("Bienvenido a la Personal Library de TobyLucas")
-path = os.chdir('C:\Lucas\Prueba Algoritmos')
-#path = os.chdir(r'C:\Users\Tobias\Documents\Facultad\Segundo año\AED 2\documentos algo2')
+#path = os.chdir('C:\Lucas\Prueba Algoritmos')
+path = os.chdir(r'C:\Users\Tobias\Documents\archivos de prueba')
 
 result = insertWordsHash(path)
 firstD = result[0]
 totalWords = result[1]
-
+print("TOTAL WORDS ", totalWords)
+printD2(firstD)
 
 #if(sys.argv[1] == "-create"):
  #   print("Iniciando Create")
@@ -47,8 +48,6 @@ def hash(key):
 
 #Función que desde el primer hash, crea un segundo hash con cada palabra apuntando a un archivo con la cantidad de veces que se encuentra dicha palabra en el archivo
 def invertStructure(S):
-    slotsQ = 0
-
     inverted = Array(totalWords, dictionary())
 
     for i in range(0, len(S)):
@@ -57,14 +56,20 @@ def invertStructure(S):
 
         while currentNode != None:
             slot = hash(currentNode.value)
+            print("SLOT DE ", currentNode.value, " ES ", slot)
 
             if inverted[slot] == None: #si el slot está vacío, agregamos la palabra y el nombre del archivo (este ultimo en la cabecera)
                 L = dictionary()
                 addToDictionary(L, currentNode.value, slot)
                 addToDictionary(L, S[i].head.value, slot)
                 inverted[slot] = L
-            else: #si no está vacío, le sumamos a la cabecera (donde tenemos el nombre del archivo), 1 (esto significa que se repite la palabra en ese archivo)
+                
+            elif inverted[slot].head.value == S[i].head.value:
                 inverted[slot].head.repetitions = inverted[slot].head.repetitions + 1
+
+            else:
+                addToDictionary(inverted[slot], S[i].head.value, slot)
+
             
             currentNode = currentNode.nextNode
 
@@ -80,15 +85,15 @@ def searchNEW(inverted, word):
         List = inverted[slot]
         imprimirlista(List)
         delete(List, word)
-
+        imprimirlista(List)
         newList = MergeSort(List)
 
         return newList
 
     return None
 
-#inverted = invertStructure(firstD)
-#newList = searchNEW(inverted, "for")
-#print("NEXT")
-#imprimirlista(newList)
+inverted = invertStructure(firstD)
+newList = searchNEW(inverted, "Hola")
+print("NEXT")
+imprimirlista(newList)
 #printD(inverted)
