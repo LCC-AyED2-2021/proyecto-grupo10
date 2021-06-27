@@ -3,13 +3,13 @@ import os
 projectFolder = os.getcwd()
 
 
-def guardarDatos(hashandWords):
+def saveData(hashandWords):
  
   with open(projectFolder + '\hash.bin', 'bw') as f:
     pickle.dump(hashandWords, f)
 
 
-def hacer_lectura():
+def readData():
   
   with open(projectFolder + '\hash.bin', 'br') as f:
     hashandWords = pickle.load(f)

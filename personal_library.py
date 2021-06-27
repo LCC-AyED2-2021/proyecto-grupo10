@@ -16,6 +16,7 @@ print("Bienvenido a la Personal Library de TobyLucas")
 
 
 if(sys.argv[1] == "-create"):
+    #leemo el parametro 
     pathConsoleParamater = sys.argv[2]
     completePath = os.chdir(pathConsoleParamater)
     HashAndTotalWords = insertWordsHash(completePath)
@@ -28,11 +29,11 @@ if(sys.argv[1] == "-create"):
 
 elif(sys.argv[1] == "-search"):
     searchQuery = sys.argv[2]
-    resultFromLecture = hacer_lectura()
-    newList = searchNEW(resultFromLecture.hash, searchQuery,resultFromLecture.words)
+    resultFromLecture = readData()
+    sortedResults = searchLibrary(resultFromLecture.hash, searchQuery,resultFromLecture.words)
     print("LISTA ORDENADA:")
-    if newList != None:
-        imprimirlista(newList)
+    if sortedResults != None:
+        imprimirlista(sortedResults)
     
 else:
    print("Ingrese un comando valido :)")
