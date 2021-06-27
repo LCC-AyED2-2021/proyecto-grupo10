@@ -16,9 +16,8 @@ def searchLibrary(inverted, word ,totalWords):
 
     if inverted[slot] != None:
         List = inverted[slot]
-        delete(List, word)
-        newList = ordenarLista(List)
-        return newList
-
+        if delete(List, word) != None:
+            newList = ordenarLista(List)
+            return newList
 
     return None

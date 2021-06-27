@@ -41,8 +41,6 @@ def search(L, element):
 
         currentNode = currentNode.nextNode
 
-
-#notación O(n)
     return position
 
 
