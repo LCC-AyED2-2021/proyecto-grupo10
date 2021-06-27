@@ -136,13 +136,8 @@ def update(L, element, position):
 def imprimirlista(l):
     currentNode = l.head
     while currentNode != None:
-        print(currentNode.value, end=" ")
+        print(currentNode.value)
         currentNode = currentNode.nextNode
-    print("")
-    return
-
-    def enqueue(Q, element):
-        insert(Q, element, length(Q))
 
 
 def enqueue(Q,element):
