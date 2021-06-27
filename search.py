@@ -4,24 +4,25 @@ from mydicctionary import *
 from mylinkedlist import *
 from utilities import *
 from objets import *
+from create import *
 from serialization import *
 import os
 import sys
 
 
 
-def searchNEW(inverted, word):
+def searchNEW(inverted, word ,totalWords):
 
-    slot = hash(word)
-    print("SLOT ", slot)
+    slot = hash(word,totalWords)
 
     if inverted[slot] != None:
         List = inverted[slot]
-        imprimirlista(List)
+        print("LISTA SIN ORDENAR:")
         delete(List, word)
-
-        newList = MergeSort(List)
+        imprimirlista(List)
+        newList = ordenarLista(List)
 
         return newList
 
+    print("No se encontró la palabra.")
     return None
