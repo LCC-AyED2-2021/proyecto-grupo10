@@ -96,6 +96,5 @@ def insertWordsHash(path):
                 
         insertOnStructure(firstDictionary, j, file)
         j = j + 1
-    
-    print("succesful!")
+        f.close()
     return firstDictionary, totalWords
