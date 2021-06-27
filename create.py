@@ -33,12 +33,12 @@ def insertWordsHash(path):
         lines = f.readlines()
 
         for line in lines:
-            word = ''
+            word = String('')
             lentghL = len(line)
             for i in range(0,lentghL):
                 
                 if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"' and line[i] != '\n':
-                    word = word + line[i]
+                    word = concat(word, String(line[i]))
 
                     if i == lentghL - 1:
                         insertOnStructure(firstDictionary, j, word)
@@ -47,14 +47,14 @@ def insertWordsHash(path):
                 else:
                     
                     if i < lentghL - 2 and ((line[i] == '.' and line[i+1] != ' ') or (line[i] == ',' and line[i+1] != ' ')):
-                        word = word + line[i]
+                        word = concat(word, String(line[i]))
 
                     insertOnStructure(firstDictionary, j, word)
 
                     totalWords = totalWords + 1
-                    word = ''
+                    word = String('')
                 
-        insertOnStructure(firstDictionary, j, file)
+        insertOnStructure(firstDictionary, j, String(file))
         j = j + 1
         f.close()
     return firstDictionary, totalWords
@@ -86,13 +86,10 @@ def invertStructure(S,totalWords):
             
             currentNode = currentNode.nextNode
 
-
-
-    
     return inverted
 
 def insertOnStructure(D, slot, word):
-    if word != '':
+    if strcmp(word, String("")):
         if D[slot] == None:
             L = LinkedList()
             add(L, word)

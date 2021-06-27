@@ -34,7 +34,7 @@ def search(L, element):
     ##establecemos una posicion nula al empezar, es lo que retornamos si se encuentra un elemento o no
     contador = 0
     while currentNode != None:
-        if currentNode.value == element:
+        if strcmp(currentNode.value, element):
             position = contador
             break
         contador = contador + 1
@@ -86,10 +86,10 @@ def delete(L, element):
     if Posicion != None:
         currentnode = L.head
         while currentnode != None:
-            if L.head.value == element:
+            if strcmp(L.head.value, element):
                 L.head = L.head.nextNode
                 break
-            elif currentnode.nextNode.value == element:
+            elif strcmp(currentnode.nextNode.value, element):
                 currentnode.nextNode = currentnode.nextNode.nextNode
                 break
             currentnode = currentnode.nextNode

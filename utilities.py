@@ -15,8 +15,6 @@ def check_file_count(path):
 
     return file_count
 
-
-
 def ordenarLista(lista):
     if lista.head == None:
         return None
