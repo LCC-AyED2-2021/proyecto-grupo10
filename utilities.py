@@ -15,56 +15,7 @@ def check_file_count(path):
 
     return file_count
 
-def insertOnStructure(D, slot, word):
-    if word != '':
-        if D[slot] == None:
-            L = LinkedList()
-            add(L, word)
-            D[slot] = L
-        else:
-            add(D[slot], word)
 
-
-def insertWordsHash(path):
-    files = os.listdir(path)
-    
-    global totalWords #variable que guarda el total de palabras entre todos los textos, aunque se repitan
-    totalWords = 0
-    
-    firstDictionary = Array(len(files), LinkedList())
-    j = 0
-
-    for file in files:
-        f = open(file, encoding="utf8")
-        lines = f.readlines()
-
-        for line in lines:
-            word = ''
-            lentghL = len(line)
-            for i in range(0,lentghL):
-                
-                if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"' and line[i] != '\n':
-                    word = word + line[i]
-
-                    if i == lentghL - 1:
-                        insertOnStructure(firstDictionary, j, word)
-                        totalWords = totalWords + 1
-
-                else:
-                    
-                    if i < lentghL - 2 and ((line[i] == '.' and line[i+1] != ' ') or (line[i] == ',' and line[i+1] != ' ')):
-                        word = word + line[i]
-
-                    insertOnStructure(firstDictionary, j, word)
-
-                    totalWords = totalWords + 1
-                    word = ''
-                
-        insertOnStructure(firstDictionary, j, file)
-        j = j + 1
-    
-    print("succesful!")
-    return firstDictionary, totalWords
 
 def ordenarLista(lista):
     if lista.head == None:
