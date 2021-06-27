@@ -10,7 +10,7 @@ from serialization import *
 
 
 
-def searchNEW(inverted, word ,totalWords):
+def searchLibrary(inverted, word ,totalWords):
 
     slot = hash(word,totalWords)
 

@@ -3,7 +3,7 @@ import os
 projectFolder = os.getcwd()
 
 
-def hacer_escritura(hashandWords):
+def guardarDatos(hashandWords):
  
   with open(projectFolder + '\hash.bin', 'bw') as f:
     pickle.dump(hashandWords, f)
