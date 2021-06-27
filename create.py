@@ -11,11 +11,13 @@ import sys
 
 
 ##FUNCION HASH
-def hash(key,totalWords):
-  slot = 0
-  for i in range(0, len(key)):
-    slot = slot + ord(key[i]) - ord("a")
-  return slot % totalWords
+def hash(s, totalWords):
+    val = 0
+    for i in range(len(s)):
+        j = abs(i - len(s))
+        val += (ord(s[i])*(255^j))
+
+    return val  % totalWords
 
 def insertWordsHash(path):
     files = os.listdir(path)
@@ -86,7 +88,7 @@ def invertStructure(S,totalWords):
 
 
 
-    print("succesful!")
+    
     return inverted
 
 def insertOnStructure(D, slot, word):
