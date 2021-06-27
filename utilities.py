@@ -1,3 +1,4 @@
+from mydicctionary import dictionary, dictionaryNode
 from algo1 import *
 from mylinkedlist import *
 from math import *
@@ -42,10 +43,10 @@ def insertWordsHash(path):
             lentghL = len(line)
             for i in range(0,lentghL):
                 
-                if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"':
+                if line[i] != '.' and line[i] != ',' and line[i] != ' ' and line[i] != '(' and line[i] != ')' and line[i] != '"' and line[i] != '\n':
                     word = word + line[i]
 
-                    if i == lentghL - 2:
+                    if i == lentghL - 1:
                         insertOnStructure(firstDictionary, j, word)
                         totalWords = totalWords + 1
 
@@ -65,64 +66,54 @@ def insertWordsHash(path):
     print("succesful!")
     return firstDictionary, totalWords
 
-def MergeSort(lista):
-    if length(lista) <= 1:
-        return lista
+def ordenarLista(lista):
+    if lista.head == None:
+        return None
     else:
-        #dividimos la lista principal en 2 listas 
-        parteIzquierda = LinkedList()
-        parteDerecha = LinkedList()
-        centro = trunc(length(lista) / 2)
+        #recorremos todos los nodos de la lista
+        count = 0
+        while count <= length(lista):
+            #comparamos
+            currentNode = lista.head
+            while currentNode != None:
+
+                if currentNode.nextNode != None:
+                    #si se cumple la condicion cambiamos los valores
+                    if currentNode.repetitions > currentNode.nextNode.repetitions:
+                        nodoAuxiliar = igualarNodos(currentNode)
+                        currentNode.value = currentNode.nextNode.value
+                        currentNode.repetitions = currentNode.nextNode.repetitions
+                        currentNode.nextNode.value = nodoAuxiliar.value
+                        currentNode.nextNode.repetitions = nodoAuxiliar.repetitions
+
+                currentNode = currentNode.nextNode
+            count = count + 1
+
+        #invertimos la lista
+
+        newlist = dictionary()
         currentNode = lista.head
 
-        for n in range(0, length(lista)):
-            if n < centro:
-                enqueue(parteIzquierda, currentNode.repetitions)
-            else:
-                enqueue(parteDerecha, currentNode.repetitions)
-            currentNode = currentNode.nextNode
-
-        parteIzquierda = MergeSort(parteIzquierda)
-        parteDerecha = MergeSort(parteDerecha)
-        ##llamamos la funcion hasta que las listas esten ordenadas
-        #Si las listas se estan ordenadas las juntaos y se devuelven
-        if access(parteIzquierda, length(parteIzquierda) - 1) <= access(parteDerecha, 0):
-            currentNode = parteDerecha.head
-            while currentNode != None:
-                enqueue(parteIzquierda, currentNode.repetitions)
-                currentNode = currentNode.nextNode
-            return parteIzquierda
-
-        listaOrdenada = MergeSortR(parteIzquierda, parteDerecha)
-        ## retornamos la lista con la busqueda realizada
-        return listaOrdenada
-
-def MergeSortR(lista1, lista2):
-
-    listaaOrdenar = LinkedList()
-
-    #ordenamos los valores
-    ##correspondientes a cada lista
-    ##luego juantamos las listas en una
-    while length(lista1) > 0 and length(lista2) > 0:
-        #
-        if access(lista1, 0) <= access(lista2, 0):
-            enqueue(listaaOrdenar, access(lista1, 0))
-            delete(lista1, access(lista1, 0))
-        else:
-            enqueue(listaaOrdenar, access(lista2, 0))
-            delete(lista2, access(lista2, 0))
-    if length(lista1) > 0:
-        currentNode = lista1.head
         while currentNode != None:
-            enqueue(listaaOrdenar, currentNode.repetitions)
+            newNode = dictionaryNode()
+            newNode.value = currentNode.value
+            newNode.repetitions = currentNode.repetitions
+            newNode.nextNode = newlist.head
+            newlist.head = newNode
+
             currentNode = currentNode.nextNode
-    if length(lista2) > 0:
-        currentNode = lista2.head
-        while currentNode != None:
-            enqueue(listaaOrdenar, currentNode.repetitions)
-            currentNode = currentNode.nextNode
-    return listaaOrdenar
+
+        ## retornamos la lista con el orden realizada
+        return newlist
+    
+    return None
+
+def igualarNodos(Nodo):
+    NewNode = Node()
+    NewNode.value = Nodo.value
+    NewNode.repetitions = Nodo.repetitions
+    NewNode.nextNode = Nodo.nextNode
+    return NewNode
 
 
     

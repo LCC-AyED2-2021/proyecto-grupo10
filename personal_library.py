@@ -7,6 +7,7 @@ from objets import *
 from serialization import *
 import os
 import sys
+import random
 
 print("Bienvenido a la Personal Library de TobyLucas")
 #path = os.chdir('C:\Lucas\Prueba Algoritmos')
@@ -38,13 +39,33 @@ printD2(firstD)
  #   print("Ingrese un comando valido :)")
 
 
-
+'''''
 ##FUNCION HASH
 def hash(key):
   slot = 0
   for i in range(0, len(key)):
-    slot = slot + ord(key[i]) - ord("a")
+    slot = slot + (ord(key[i]) * 256^i)
+
   return slot % totalWords
+'''
+
+#PERFECT HASH
+G = Array(totalWords + 1, 0)
+for i in range(0, totalWords + 1):
+    G[i] = random.randrange(0, totalWords)
+
+S1 = Array(totalWords + 2, 0)
+S2 = Array(totalWords + 2, 0)
+for i in range(0, totalWords + 2):
+    S1[i] = random.randrange(0, totalWords)
+    S2[i] = random.randrange(0, totalWords)
+
+def hash_f(key, T):
+    return sum(T[i % totalWords] * ord(c) for i, c in enumerate(str(key))) % len(G)
+
+def hash(key):
+    return (G[hash_f(key, S1)] + G[hash_f(key, S2)]) % len(G)
+
 
 #Función que desde el primer hash, crea un segundo hash con cada palabra apuntando a un archivo con la cantidad de veces que se encuentra dicha palabra en el archivo
 def invertStructure(S):
@@ -73,6 +94,8 @@ def invertStructure(S):
             
             currentNode = currentNode.nextNode
 
+
+
     print("succesful!")
     return inverted
 
@@ -83,17 +106,20 @@ def searchNEW(inverted, word):
 
     if inverted[slot] != None:
         List = inverted[slot]
-        imprimirlista(List)
+        print("LISTA SIN ORDENAR:")
         delete(List, word)
         imprimirlista(List)
-        newList = MergeSort(List)
+        newList = ordenarLista(List)
 
         return newList
 
+    print("No se encontró la palabra.")
     return None
 
 inverted = invertStructure(firstD)
-newList = searchNEW(inverted, "Hola")
 print("NEXT")
+printD(inverted)
+newList = searchNEW(inverted, "Hola")
+print("SEARCH")
+print("LISTA ORDENADA:")
 imprimirlista(newList)
-#printD(inverted)
