@@ -15,7 +15,7 @@ print("Bienvenido a la Personal Library de TobyLucas")
 
 
 
-if(sys.argv[1] == "-create"):
+if(strcmp(String(sys.argv[1]) ,String("-create"))):
     #leemos el parametro <local_path> por consola
     pathConsoleParamater = sys.argv[2]
     #creamos el path total
@@ -30,9 +30,7 @@ if(sys.argv[1] == "-create"):
     ResultToSave = HashAndWords(SecondHash,totalWords)
     saveData(ResultToSave)
     print("library created successfully")
-
-
-elif(sys.argv[1] == "-search"):
+elif(strcmp(String(sys.argv[1]) ,String("-search"))):
     searchQuery = sys.argv[2]
     #leemos el parametro <key_word> por consola
     resultFromLecture = readData()
