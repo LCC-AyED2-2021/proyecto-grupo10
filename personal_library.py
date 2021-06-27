@@ -29,6 +29,7 @@ if(sys.argv[1] == "-create"):
     #Guardamos el segundo hash + las palabras totales de todos los documentos
     ResultToSave = HashAndWords(SecondHash,totalWords)
     saveData(ResultToSave)
+    print("library created successfully")
 
 
 elif(sys.argv[1] == "-search"):
@@ -41,6 +42,8 @@ elif(sys.argv[1] == "-search"):
     if sortedResults != None:
     #mostramos los resultados
         imprimirlista(sortedResults)
+    else:
+        print("no document found")
     
 else:
    print("Ingrese un comando valido :)")

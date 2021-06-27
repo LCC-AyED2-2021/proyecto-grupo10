@@ -16,12 +16,9 @@ def searchLibrary(inverted, word ,totalWords):
 
     if inverted[slot] != None:
         List = inverted[slot]
-        print("LISTA SIN ORDENAR:")
         delete(List, word)
-        imprimirlista(List)
         newList = ordenarLista(List)
-
         return newList
 
-    print("No se encontró la palabra.")
+
     return None
