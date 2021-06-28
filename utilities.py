@@ -16,6 +16,8 @@ def check_file_count(path):
     return file_count
 
 def ordenarLista(lista):
+
+    #Ordenamos la lista de menor a mayor, dependiendo del valor que tengan en el parámetro repetitions.
     if lista.head == None:
         return None
     else:
@@ -38,8 +40,7 @@ def ordenarLista(lista):
                 currentNode = currentNode.nextNode
             count = count + 1
 
-        #invertimos la lista
-
+        #invertimos la lista para que esté ordenada de mayor a menor.
         newlist = dictionary()
         currentNode = lista.head
 
@@ -52,11 +53,12 @@ def ordenarLista(lista):
 
             currentNode = currentNode.nextNode
 
-        ## retornamos la lista con el orden realizada
+        #retornamos la lista con el orden querido
         return newlist
     
     return None
 
+#Función que iguala dos nodos.
 def igualarNodos(Nodo):
     NewNode = Node()
     NewNode.value = Nodo.value
