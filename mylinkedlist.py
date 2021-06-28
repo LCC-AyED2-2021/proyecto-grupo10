@@ -134,7 +134,7 @@ def update(L, element, position):
 def imprimirlista(l):
     currentNode = l.head
     while currentNode != None:
-        print(currentNode.value)
+        print(currentNode.value, "// Relevance: ", currentNode.repetitions)
         currentNode = currentNode.nextNode
 
 
